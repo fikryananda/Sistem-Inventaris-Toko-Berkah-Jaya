@@ -3,9 +3,11 @@
 # SistemInventaris
 # ==========================================
 
-# --- Build output ---
+# --- Build output (tidak di-push) ---
 build/
-dist/
+
+# --- dist/ di-push (berisi file .jar hasil build) ---
+# dist/
 
 # --- File .class hasil compile ---
 *.class
