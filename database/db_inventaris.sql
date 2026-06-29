@@ -1,10 +1,3 @@
--- ============================================================
---  Script SQL - Sistem Inventaris Toko Berkah Jaya
---  Mata Kuliah : Pemrograman 2
---  Sesuai ERD Dosen
--- ============================================================
-
--- 1. Hapus database lama jika ada, buat ulang yang baru
 DROP DATABASE IF EXISTS db_inventaris;
 CREATE DATABASE db_inventaris
     CHARACTER SET utf8mb4
@@ -12,9 +5,6 @@ CREATE DATABASE db_inventaris
 
 USE db_inventaris;
 
--- ============================================================
--- 2. TABEL tb_user (untuk login)
--- ============================================================
 CREATE TABLE tb_user (
     id_user      INT AUTO_INCREMENT PRIMARY KEY,
     username     VARCHAR(50)  NOT NULL UNIQUE,
@@ -28,10 +18,6 @@ INSERT INTO tb_user (username, password, nama_lengkap, level) VALUES
 ('admin',   'admin123',   'Administrator',  'Admin'),
 ('petugas', 'petugas123', 'Petugas Gudang', 'Petugas');
 
-
--- ============================================================
--- 3. TABEL tb_kategori
--- ============================================================
 CREATE TABLE tb_kategori (
     id_kategori   INT AUTO_INCREMENT PRIMARY KEY,
     nama_kategori VARCHAR(50) NOT NULL
@@ -45,10 +31,6 @@ INSERT INTO tb_kategori (nama_kategori) VALUES
 ('Pakaian'),
 ('Lainnya');
 
-
--- ============================================================
--- 4. TABEL tb_barang
--- ============================================================
 CREATE TABLE tb_barang (
     id_barang   VARCHAR(10)  PRIMARY KEY,
     id_kategori INT          NOT NULL,
@@ -59,7 +41,7 @@ CREATE TABLE tb_barang (
     FOREIGN KEY (id_kategori) REFERENCES tb_kategori(id_kategori)
 ) ENGINE=InnoDB;
 
--- Data awal barang
+
 INSERT INTO tb_barang VALUES
 ('BRG001', 1, 'Laptop Asus',      'Unit', 8500000, 10),
 ('BRG002', 1, 'Mouse Wireless',   'Unit',  125000, 50),
@@ -81,10 +63,6 @@ INSERT INTO tb_barang VALUES
 ('BRG018', 5, 'Pulpen Gel Hitam',    'Kotak', 24000, 120),
 ('BRG019', 5, 'Masker Medis 3-Ply',  'Box',   15000, 150);
 
-
--- ============================================================
--- 5. TABEL tb_customer
--- ============================================================
 CREATE TABLE tb_customer (
     id_customer   VARCHAR(10)  PRIMARY KEY,
     nama_customer VARCHAR(100) NOT NULL,
@@ -92,16 +70,11 @@ CREATE TABLE tb_customer (
     telepon       VARCHAR(15)
 ) ENGINE=InnoDB;
 
--- Data awal customer
 INSERT INTO tb_customer VALUES
 ('CUST001', 'Budi Santoso',  'Jl. Merdeka No. 10, Jakarta',  '08123456789'),
 ('CUST002', 'Siti Rahayu',   'Jl. Sudirman No. 5, Tangerang', '08234567890'),
 ('CUST003', 'Ahmad Fauzi',   'Jl. Gatot Subroto No. 3, Depok','08345678901');
 
-
--- ============================================================
--- 6. TABEL tb_penjualan (Header Transaksi)
--- ============================================================
 CREATE TABLE tb_penjualan (
     id_jual       INT AUTO_INCREMENT PRIMARY KEY,
     no_faktur     VARCHAR(20)  NOT NULL UNIQUE,
@@ -113,10 +86,6 @@ CREATE TABLE tb_penjualan (
     FOREIGN KEY (id_user)     REFERENCES tb_user(id_user)
 ) ENGINE=InnoDB;
 
-
--- ============================================================
--- 7. TABEL tb_detail_penjualan (Detail Item Transaksi)
--- ============================================================
 CREATE TABLE tb_detail_penjualan (
     id_detail    INT AUTO_INCREMENT PRIMARY KEY,
     id_jual      INT          NOT NULL,
@@ -127,4 +96,4 @@ CREATE TABLE tb_detail_penjualan (
     FOREIGN KEY (id_jual)   REFERENCES tb_penjualan(id_jual) ON DELETE CASCADE,
     FOREIGN KEY (id_barang) REFERENCES tb_barang(id_barang)
 ) ENGINE=InnoDB;
--- ============================================================
+
