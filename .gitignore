@@ -1,0 +1,35 @@
+# ==========================================
+# .gitignore untuk Project Java / NetBeans
+# SistemInventaris
+# ==========================================
+
+# --- Build output ---
+build/
+dist/
+
+# --- File .class hasil compile ---
+*.class
+
+# --- NetBeans private config (berisi path lokal) ---
+nbproject/private/
+
+# --- Folder & file temporary ---
+temp_docx/
+temp_docx.zip
+extract_docx.ps1
+
+# --- Data struk transaksi (generated runtime) ---
+struk/
+
+# --- File log ---
+*.log
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor / IDE lainnya ---
+.vscode/
+.idea/
+*.iml
